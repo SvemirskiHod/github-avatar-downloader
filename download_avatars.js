@@ -1,14 +1,14 @@
 var request = require('request');
+var token = require("../token.js");
 console.log('Welcome to the GitHub Avatar Downloader');
-
+var require
 
 
 function getRepoContributors(repoOwner, repoName, cb){
 
 var GITHUB_USER = "SvemirskiHod";
-var GITHUB_TOKEN = "f9e45c29a26822f62459d5a506e6b091fce71bd8";
+var GITHUB_TOKEN = token.token;
 var requestURL = 'https://'+ GITHUB_USER + ':' + GITHUB_TOKEN + '@api.github.com/repos/' + repoOwner + '/' + repoName + '/contributors';
-console.log(requestURL);
 
   request({url: requestURL,
            headers: {'User-Agent': 'request'},
@@ -20,10 +20,7 @@ console.log(requestURL);
 
 getRepoContributors("jquery", "jquery", function(err, result) {
   console.log("Errors:", err);
-  console.log("Result:", result);
+  result.forEach(function(elm){
+    console.log(elm['avatar_url'])
+  });
 });
-
-  // auth: {
-           //  'user': 'SvemirskiHod',
-           //  'pass': 'f9e45c29a26822f62459d5a506e6b091fce71bd8',
-           //  }
