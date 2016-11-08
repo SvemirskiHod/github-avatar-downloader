@@ -2,6 +2,7 @@ var request = require('request');
 var token = require("../token.js"); //requiring token as to not push token to gitHub
 var fs = require('fs');
 console.log('Welcome to the GitHub Avatar Downloader');
+var input = process.argv.slice(2);
 
 function getRepoContributors(repoOwner, repoName, cb){
   var GITHUB_USER = "SvemirskiHod";
@@ -22,7 +23,7 @@ function getRepoContributors(repoOwner, repoName, cb){
   );
 }
 
-getRepoContributors("jquery", "jquery", function(err, result) {
+getRepoContributors(input[0],input[1], function(err, result) {
   result.forEach(function(elm){
     var avatarUrl = elm["avatar_url"];
     var login = elm["login"];
